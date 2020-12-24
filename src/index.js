@@ -9,6 +9,9 @@ import {Provider} from "react-redux";
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import rootReducer from "./reducers";
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Login from "./component/Login";
+import Header from "./navigation/Navigation";
 
 //create redux store -> reducers -> 'actions - actionType' | applyMiddleware()
 
@@ -19,7 +22,15 @@ const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <BrowserRouter>
+            <div>
+                <Header/>
+                <Switch>
+                    <Route path="/" component={App} exact={true}/>
+                    <Route path="/Login" component={Login} exact={true}/>
+                </Switch>
+            </div>
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );
