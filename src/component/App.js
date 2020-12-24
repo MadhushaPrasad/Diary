@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
-import {deleteNote, saveNotes} from "../action/noteAction";
+import {deleteNote, getNotes, saveNotes} from "../action/noteAction";
 
 class App extends Component {
 
@@ -19,7 +19,7 @@ class App extends Component {
 
     //lifecycle
     componentDidMount() {
-        // this.props.getNotes();
+        this.props.getNotes();
     }
 
     //handle change
@@ -107,6 +107,6 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-const mapDispatchToProps = {saveNotes, deleteNote};
+const mapDispatchToProps = {getNotes, saveNotes, deleteNote};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
